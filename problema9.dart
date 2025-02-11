@@ -1,32 +1,44 @@
 import 'dart:io';
-void main(){
-    // Mederyth Azul Torres: 22308051281108 
-    print("Mederyth Azul Torres: 22308051281108");
-    print("PROBLEMA 9");
-    print("------------------------------------------------------------------------------------------------");
-    print("9. Escribe un programa que tome una lista de números enteros (int) y la ordene de menor a mayor.");
-    print("Lista de numeros de mayor a menor");
 
-    // Lista para almacenar los números ingresados por el usuario
-    List<int> numeros = [];
+// Función para capturar los datos de la lista
+List<int> capturarDatos() {
+  List<int> listaNumeros = [];
+  print("Ingrese los números enteros (escriba 'fin' para terminar):");
 
-    // Capturar la cantidad de números que el usuario desea ingresar
-    print("¿Cuántos números deseas ingresar?");
-    int cantidad = int.parse(stdin.readLineSync()!);
-
-    // Capturar los números uno por uno
-    for (int i = 0; i < cantidad; i++) {
-        print("Ingresa el número ${i + 1}:");
-        int numero = int.parse(stdin.readLineSync()!);
-        numeros.add(numero); // Agregar el número a la lista
+  while (true) {
+    String? entrada = stdin.readLineSync(); // Lee la entrada del usuario
+    if (entrada == null) {
+      break; // Termina si la entrada es nula
     }
-
-    // Ordenar la lista de menor a mayor
-    numeros.sort();
-
-    // Mostrar los números ordenados, uno por línea
-    print("\nLos números ordenados de menor a mayor son:");
-    for (int numero in numeros) {
-        print(numero);
+    entrada = entrada.trim(); // Elimina espacios en blanco al inicio y final
+    if (entrada.toLowerCase() == 'fin') {
+      break; // Termina si el usuario escribe 'fin'
     }
+    try {
+      int numero = int.parse(entrada); // Convierte la entrada a un número entero
+      listaNumeros.add(numero); // Agrega el número a la lista
+    } catch (e) {
+      print("Entrada no válida. Por favor, ingrese un número entero.");
+    }
+  }
+
+  return listaNumeros;
+}
+
+// Función para mostrar los elementos ordenados
+void mostrarElementosOrdenados(List<int> listaNumeros) {
+  listaNumeros.sort(); // Ordena la lista de menor a mayor
+  print("\nLista ordenada de menor a mayor:");
+  for (int numero in listaNumeros) {
+    print(numero); // Muestra cada número de la lista ordenada
+  }
+  print("Mederyth Azul Torres 22308051281108");
+}
+
+void main() {
+  // Capturar datos
+  List<int> listaNumeros = capturarDatos();
+
+  // Mostrar elementos ordenados
+  mostrarElementosOrdenados(listaNumeros);
 }
